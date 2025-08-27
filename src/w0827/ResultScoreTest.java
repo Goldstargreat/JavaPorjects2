@@ -18,7 +18,7 @@ public class ResultScoreTest {
             int input = scanner.nextInt();
 
             // 점수 유효성 검사
-            if (score[i] > 10) {
+            if (input > 10) {
                 System.out.println("오류: 10점 이하의 점수만 입력할 수 있습니다. 다시 입력해주세요.");
                 i--; // 현재 순서를 다시 실행하기 위해 인덱스를 1 감소시킴
                 continue; // 다음 루프 실행

@@ -19,7 +19,7 @@ public class SimpleCalculator {
                 result = num1 / num2;
                 break;
             default:
-                System.out.println("올바르지 않은 연산자입니다.");
+                return 0;
         }
         return result;
     }

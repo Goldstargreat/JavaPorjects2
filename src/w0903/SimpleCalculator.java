@@ -43,9 +43,9 @@ public class SimpleCalculator {
                 continue;
             }
 
-            System.out.print("정수1 입력: ");
+            System.out.print("첫 번째 숫자를 입력하시오: ");
             int num1 = scanner.nextInt();
-            System.out.print("정수2 입력: ");
+            System.out.print("두 번째 숫자를 입력하시오: ");
             int num2 = scanner.nextInt();
 
             if (op == '/' && num2 == 0) {

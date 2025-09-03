@@ -39,7 +39,7 @@ public class SimpleCalculator {
 
             // 연산자 유효성 검사
             if (op != '+' && op != '-' && op != '*' && op != '/') {
-                System.out.println("잘못된 연산자입니다. 다시 입력해주세요.");
+                System.out.println("잘못된 연산자입니다. 다시 입력하십시오.");
                 continue;
             }
 

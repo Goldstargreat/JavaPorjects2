@@ -29,7 +29,7 @@ public class SimpleCalculator {
         char op;
 
         while (true) {
-            System.out.print("계산할 연산 기호를 입력해주세요.(+, -, *, /), 종료하려면 e 또는 E를 누르십시오. : ");
+            System.out.print("계산할 연산 기호를 입력해주세요.(+, -, *, /). 종료하려면 e 또는 E를 누르십시오. : ");
             op = scanner.next().charAt(0);
 
             if (op == 'e' || op == 'E') {

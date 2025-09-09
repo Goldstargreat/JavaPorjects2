@@ -13,6 +13,6 @@ public class UserMethod1 {
     public static void main(String[] args) {
         outputDice("장원영");
         outputDice("트럼프");
-        outputDice("이시바");
+        outputDice("홍금보");
     }
 }

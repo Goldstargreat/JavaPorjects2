@@ -29,7 +29,8 @@ public class SimpleCalculator {
         char op;
 
         while (true) {
-            System.out.print("계산할 연산 기호를 입력해주세요.(+, -, *, /) 종료하려면 e 또는 E를 누르십시오. : ");
+            System.out.println("★ 연산 기호의 입력부에 소문자 e 또는 대문자 E를 입력하면 계산기 앱이 종료됩니다.");
+            System.out.print("계산할 연산 기호를 입력하시오. (+, -, *, /): ");
             op = scanner.next().charAt(0);
 
             if (op == 'e' || op == 'E') {
@@ -56,7 +57,7 @@ public class SimpleCalculator {
             int result = calc(num1, num2, op);
             System.out.printf("%d %c %d = %d\n", num1, op, num2, result);
         }
-
+        System.out.println("계산기 앱을 종료합니다.");
         scanner.close();
     }
 }

@@ -18,7 +18,7 @@ public class Plus {
             int num1 = scanner.nextInt();
             if (num1 == -1)
                 break;
-            System.out.print("두 번째 정수를 입력하세요.: ");
+            System.out.print("★ 두 번째 정수를 입력하세요.: ");
             int num2 = scanner.nextInt();
 
             int sum = plus(num1, num2);

@@ -8,7 +8,7 @@ public class LottoProgram {
         System.out.println("============= 로또 프로그램 ============");
         ArrayList<Integer> numList = new ArrayList();
 
-        int randNum = 0;
+        int randNum = 0; // 처음에 뽑은 숫자가 없음
         RandomNumber rn = new RandomNumber();
 
         reFindNum:

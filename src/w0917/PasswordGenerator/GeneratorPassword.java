@@ -1,6 +1,6 @@
-package w0917;
+package w0917.PasswordGenerator;
 import java.util.Scanner;
-import static w0917.Condition.checkPassword;
+import static w0917.PasswordGenerator.Condition.checkPassword;
 
 public class GeneratorPassword {
     public static void main(String[] args) {

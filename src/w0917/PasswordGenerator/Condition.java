@@ -1,4 +1,4 @@
-package w0917;
+package w0917.PasswordGenerator;
 
 public class Condition {
     static boolean checkPassword(String password){

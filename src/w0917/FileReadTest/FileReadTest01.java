@@ -1,4 +1,4 @@
-package w0917;
+package w0917.FileReadTest;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -8,8 +8,8 @@ public class ArrayExceptionTest {
 
         try {
             ary[3] = 40;
-            for(int i = 0; i< ary.length; i++){
-                System.out.print(ary[i] + '\t');
+            for(int i = 0; i < ary.length; i++){
+                System.out.print(ary[i] + "\t");
             }
         } catch (ArrayIndexOutOfBoundsException e){
             System.out.println("배열의 인덱스 번호가 인덱스 범위를 벗어났습니다. ");

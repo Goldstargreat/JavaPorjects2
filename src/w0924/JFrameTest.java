@@ -7,8 +7,9 @@ public class JFrameTest extends JFrame {
     public JFrameTest(){
         setTitle("처음 만드는 프레임");
         setSize(500,500);
-        setVisible(true);
         setLocation(200,200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     public static void main(String[] args) {

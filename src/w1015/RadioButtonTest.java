@@ -46,7 +46,7 @@ public class RadioButtonTest extends JFrame {
 
             for(JRadioButton rb : rbArr) {
                 if(rb.isSelected()) {
-                    ImageIcon imageIcon = new ImageIcon("./imgs_root/"+imgNameArr[i]+".jpg");
+                    ImageIcon imageIcon = new ImageIcon("./imgs_root/" + imgNameArr[i] + ".jpg");
                     lbl.setIcon(imageIcon);
                     JOptionPane.showMessageDialog(null, rb.getText()+"가 선택되었어요~");
                 }

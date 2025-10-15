@@ -9,14 +9,14 @@ import java.awt.event.ActionListener;
 
 public class RadioButtonTest extends JFrame {
     String[] rbStrArr = {"아이브", "뉴진스", "블랙핑크"};
-    String[] imgNameArr = {"ive", "newjeans", "blackpink"};
+    String[] imgNameArr = {"Ive", "Newjeans", "Blackpink"};
     JRadioButton[] rbArr = new JRadioButton[rbStrArr.length];
     JLabel lbl = new JLabel("", JLabel.CENTER);
 
     public RadioButtonTest() {
         JPanel panel = new JPanel();
         ButtonGroup bg = new ButtonGroup();
-        int i=0;
+        int i = 0;
         for(String str : rbStrArr) {
             rbArr[i] = new JRadioButton(str);
             rbArr[i].addActionListener(radioListener);

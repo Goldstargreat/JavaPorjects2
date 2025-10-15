@@ -7,35 +7,37 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CheckboxTest extends JFrame {
+public class CheckBoxTest extends JFrame {
     JCheckBox checkBox;
 
-    public CheckboxTest(){
+    public CheckBoxTest() {
         setLayout(new FlowLayout(FlowLayout.RIGHT));
-        setTitle("CheckboxTest");
-        checkBox = new JCheckBox("체크박스를 선택하십시오.");
-        checkBox.addActionListener(CheckBoxListener);
+        setTitle("CheckBoxTest");
+        checkBox = new JCheckBox("체크박스를 선택하세요.");
+        checkBox.addActionListener(checkBoxListener);
         add(checkBox);
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-// JFrame이 모니터 화면의 정중앙에 오도록 한다.
+//        JFrame이 모니터 화면에 정중앙에 오도록 한다.
         CenterFrame cf = new CenterFrame(500, 300);
         cf.centerXY();
         setBounds(cf.getX(), cf.getY(), cf.getFw(), cf.getFh());
         setVisible(true);
     }
-    ActionListener CheckBoxListener = new ActionListener() {
+
+    ActionListener checkBoxListener = new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             if (checkBox.isSelected()) {
                 JOptionPane.showMessageDialog(null, "체크박스가 선택되었습니다.");
-            } else {
-                JOptionPane.showMessageDialog(null, "체크박스가 해제되었습니다." );
+            }else{
+                JOptionPane.showMessageDialog(null, "체크박스가 해제되었습니다.");
             }
         }
     };
 
     public static void main(String[] args) {
-        new CheckboxTest();
+        new CheckBoxTest();
     }
 }

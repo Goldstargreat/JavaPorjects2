@@ -15,7 +15,7 @@ public class ImageIconTest extends JFrame {
 
         setTitle("ImageIconTest");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-// JFrame이 모니터 화면의 정중앙에 오도록 한다.
+//        JFrame이 모니터 화면에 정중앙에 오도록 한다.
         CenterFrame cf = new CenterFrame(500, 500);
         cf.centerXY();
         setBounds(cf.getX(), cf.getY(), cf.getFw(), cf.getFh());

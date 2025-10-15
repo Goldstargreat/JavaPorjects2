@@ -9,15 +9,15 @@ import java.awt.event.ActionListener;
 
 public class RadioButtonTest extends JFrame {
     String[] rbStrArr = {"아이브", "뉴진스", "블랙핑크"};
-    String[] imgNameArr = {"Ive", "Newjeans", "BlackPink"};
+    String[] imgNameArr = {"ive", "newjeans", "blackpink"};
     JRadioButton[] rbArr = new JRadioButton[rbStrArr.length];
     JLabel lbl = new JLabel("", JLabel.CENTER);
 
-    public RadioButtonTest(){
+    public RadioButtonTest() {
         JPanel panel = new JPanel();
         ButtonGroup bg = new ButtonGroup();
-        int i = 0;
-        for(String str: rbStrArr) {
+        int i=0;
+        for(String str : rbStrArr) {
             rbArr[i] = new JRadioButton(str);
             rbArr[i].addActionListener(radioListener);
             bg.add(rbArr[i]);
@@ -32,27 +32,29 @@ public class RadioButtonTest extends JFrame {
         setTitle("RadioButtonTest");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-// JFrame이 모니터 화면의 정중앙에 오도록 한다.
+//        JFrame이 모니터 화면에 정중앙에 오도록 한다.
         CenterFrame cf = new CenterFrame(500, 300);
         cf.centerXY();
         setBounds(cf.getX(), cf.getY(), cf.getFw(), cf.getFh());
         setVisible(true);
     }
+
     ActionListener radioListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int i = 0;
+            int i=0;
 
             for(JRadioButton rb : rbArr) {
                 if(rb.isSelected()) {
                     ImageIcon imageIcon = new ImageIcon("./imgs_root/"+imgNameArr[i]+".jpg");
                     lbl.setIcon(imageIcon);
-                    JOptionPane.showMessageDialog(null, rb.getText() + "가 선택되었습니다.");
+                    JOptionPane.showMessageDialog(null, rb.getText()+"가 선택되었어요~");
                 }
                 i++;
             }
         }
     };
+
     public static void main(String[] args) {
         new RadioButtonTest();
     }

@@ -15,17 +15,8 @@ public class CenterFrame {
         Dimension screenSize = toolkit.getScreenSize();
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
-        x = (screenWidth - fw) / 2;
-        y = (screenHeight - fh) / 2;
-
-    }
-
-    public int getFh() {
-        return fh;
-    }
-
-    public void setFh(int fh) {
-        this.fh = fh;
+        x = screenWidth/2 - fw/2;
+        y = screenHeight/2 - fh/2;
     }
 
     public int getX() {
@@ -42,5 +33,13 @@ public class CenterFrame {
 
     public void setFw(int fw) {
         this.fw = fw;
+    }
+
+    public int getFh() {
+        return fh;
+    }
+
+    public void setFh(int fh) {
+        this.fh = fh;
     }
 }

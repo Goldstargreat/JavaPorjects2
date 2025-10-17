@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class ImageIconTest extends JFrame {
     public ImageIconTest() {
-        ImageIcon icon1 = new ImageIcon("D:/Java2Projects/JavaProject2/src/w1015/imgs/아이브.jpg");
-        ImageIcon icon2 = new ImageIcon("D:/Java2Projects/JavaProject2/src/w1015/imgs/블랙핑크.jpg");
+        ImageIcon icon1 = new ImageIcon("D:/Java2Projects/JavaProject2/src/w1015/imgs/Ive.jpg");
+        ImageIcon icon2 = new ImageIcon("D:/Java2Projects/JavaProject2/src/w1015/imgs/Blackpink.jpg");
         JLabel label = new JLabel(icon1);
         JButton button = new JButton(icon2);
         add(label, "North");

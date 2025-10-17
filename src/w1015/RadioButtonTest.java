@@ -42,7 +42,7 @@ public class RadioButtonTest extends JFrame {
     ActionListener radioListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int i=0;
+            int i = 0;
 
             for(JRadioButton rb : rbArr) {
                 if(rb.isSelected()) {

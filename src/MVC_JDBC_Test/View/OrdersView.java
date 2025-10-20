@@ -16,6 +16,6 @@ public class OrdersView {
 //        String orderDate = (shippingDate.getYear() + 1900) + "-" + (shippingDate.getMonth() + 1) + "-" + shippingDate.getDate();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String orderDate = dateFormat.format(shippingDate);
-        System.out.printf("%s\t%s\t\t%s\t\t%d\t%s\t%s\n", order.getCustomerName(), order.getProductName(), order.getQuantity(), order.getShippingDate().toLocaleString(), order.shippingAdress);
+        System.out.printf("%s\t%s\t\t%s\t\t%d\t\t%s\t%s\n", order.getCustomerName(), order.getProductName(), order.getQuantity(), order.getShippingDate().toLocaleString(), order.shippingAdress);
     }
 }

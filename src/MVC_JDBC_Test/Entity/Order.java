@@ -24,10 +24,6 @@ public class Order {
         return orderNum;
     }
 
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum;
-    }
-
     public String getOderCustomer() {
         return oderCustomer;
     }

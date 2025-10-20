@@ -16,7 +16,7 @@ public class Order {
     public String customerId;
     public String productName;
 
-    public void setOrderNum() {
+    public void setOrderNum(String orderNum) {
         this.orderNum = orderNum;
     }
 

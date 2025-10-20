@@ -73,48 +73,13 @@ public class MainController {
         } catch (SQLException e) {
             System.out.println("Statement or SQL Error");
         }
-        // Customer View를 사용하여 CustomerList에 저장된 Customer Entity의 정보들을 출력하십시오.
+        //        CustomerView를 사용해서 customerList에 저장된 Customer Entity의 정보들을 출력해 보세요.
         CustomerView customerView = new CustomerView();
         customerView.printHead();
-        for(Customer customer: customerList){
+        for (Customer customer: customerList){
             customerView.printCustomer(customer);
-            System.out.println(); // 줄바꿈
-        }
-        customerView.printFooter();
-    }
-    public static void customerListAndView(Connection con) {
-        ArrayList<Customer> customerList = new ArrayList<Customer>();
-        try {
-            String sql = "select * from 고객";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            Customer customer = null;
-
-            while (rs.next())
-            {
-                customer = new Customer();
-                customer.setCustomerid(rs.getString("고객아이디"));
-                customer.setCustomername(rs.getString("고객이름"));
-                customer.setAge(rs.getInt("나이"));
-                customer.setLevel(rs.getString("등급"));
-                customer.setJob(rs.getString("직업"));
-                customer.setReward(rs.getInt("적립금"));
-                customerList.add(customer);
-            }
-        } catch (SQLException e) {
-            System.out.println("Statement or SQL Error");
-        }
-        // Customer View를 사용하여 CustomerList에 저장된 Customer Entity의 정보들을 출력하십시오.
-        CustomerView customerView = new CustomerView();
-        customerView.printHead();
-        for(Customer customer: customerList){
-            customerView.printCustomer(customer);
-            System.out.println(); // 줄바꿈
+            System.out.println();
         }
         customerView.printFooter();
     }
 }
-
-
-

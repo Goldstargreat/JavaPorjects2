@@ -1,32 +1,36 @@
 package MVC_JDBC_Test.Controller;
 
+import jdbc_test.JDBCConnector;
 import MVC_JDBC_Test.Entity.Customer;
 import MVC_JDBC_Test.Entity.Order;
 import MVC_JDBC_Test.View.CustomerView;
+import MVC_JDBC_Test.View.InputCustomerInfoView;
 import MVC_JDBC_Test.View.OrdersView;
-import jdbc_test.JDBCConnector;
+import oracle.jdbc.proxy.annotation.Pre;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainController {
     public static void main(String[] args) {
         Connection con = JDBCConnector.getConnection();
 //        customerListAndView(con);
-        orderListAndView(con);
+//        orderListAndView(con);
+        inputCustomerAndView(con);
     }
 
     public static void orderListAndView(Connection con) {
         ArrayList<Order> orderList = new ArrayList<Order>();
-        String sql = "select 주문번호, 고객이름, 고객아이디, 배송지, 수량, 주문일자, 제품명 from 주문, 고객, 제품 where 주문.주문고객 = 고객.고객아이디 and 주문.주문제품 = 제품.제품번호";
+        String sql = "select 주문번호, 고객이름, 고객아이디, 배송지, 수량, 주문일자, 제품명  from 주문, 고객, 제품  where 주문.주문고객=고객.고객아이디 and 주문.주문제품=제품.제품번호";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Order order = null;
-            while(rs.next()){
+            while (rs.next()) {
                 order = new Order();
                 order.setOrderNum(rs.getString("주문번호"));
                 order.setCustomerName(rs.getString("고객이름"));
@@ -39,18 +43,18 @@ public class MainController {
             }
             rs.close();
             ps.close();
-            con.close();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         OrdersView.printHead();
-        for(Order order: orderList){
+        for (Order order : orderList) {
             OrdersView.printOrders(order);
         }
+
     }
 
-    public static void CustomerListAndView(Connection con){
+    public static void customerListAndView(Connection con) {
         ArrayList<Customer> customerList = new ArrayList<Customer>();
         try {
             String sql = "select * from 고객";
@@ -59,8 +63,7 @@ public class MainController {
 
             Customer customer = null;
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 customer = new Customer();
                 customer.setCustomerid(rs.getString("고객아이디"));
                 customer.setCustomername(rs.getString("고객이름"));
@@ -70,10 +73,12 @@ public class MainController {
                 customer.setReward(rs.getInt("적립금"));
                 customerList.add(customer);
             }
+
         } catch (SQLException e) {
             System.out.println("Statement or SQL Error");
         }
-        //        CustomerView를 사용해서 customerList에 저장된 Customer Entity의 정보들을 출력해 보세요.
+
+//        CustomerView를 사용해서 customerList에 저장된 Customer Entity의 정보들을 출력해 보세요.
         CustomerView customerView = new CustomerView();
         customerView.printHead();
         for (Customer customer: customerList){
@@ -81,5 +86,45 @@ public class MainController {
             System.out.println();
         }
         customerView.printFooter();
+    }
+
+//    고객정보 입력 및 입력 내용 출력
+//    고객정보 DB의 고객테이블에 고객 Entity 추가
+
+    public static void inputCustomerAndView(Connection con) {
+        Scanner sc = new Scanner(System.in);
+        InputCustomerInfoView inputCustomer = new InputCustomerInfoView();
+        while (true){
+            Customer customer = inputCustomer.inputCustomerInfo();
+            CustomerView customerView = new CustomerView();
+            customerView.printHead();
+            customerView.printCustomer(customer);
+            customerView.printFooter();
+
+            String sql = "insert into 고객 values(?,?,?,?,?,?)";
+
+            try {
+                PreparedStatement pstmt = con.prepareStatement(sql);
+                pstmt.setString(1, customer.getCustomerid());
+                pstmt.setString(2, customer.getCustomername());
+                pstmt.setInt(3, customer.getAge());
+                pstmt.setString(4, customer.getLevel());
+                pstmt.setString(5, customer.getJob());
+                pstmt.setInt(6, customer.getReward());
+                pstmt.executeUpdate();
+                pstmt.close();
+            } catch (SQLException e) {
+                System.out.println("Statement or SQL Error");
+            }
+            System.out.print("프로그램 종료를 원하면 e를 입력:");
+
+            String input = sc.nextLine();
+
+            if(input.equals("e")){
+                break;
+            }
+        }
+        System.out.println("프로그램이 종료 되었습니다. !!!");
+
     }
 }

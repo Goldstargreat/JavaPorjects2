@@ -30,7 +30,7 @@ public class FlowLayoutTest extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
-            JOptionPane.showMessageDialog(null, btn.getText());
+            JOptionPane.showMessageDialog(null, btn.getText() + "이(가) 선택되었습니다.");
         }
     };
 

@@ -23,7 +23,7 @@ public class FlowLayoutTest extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         CenterFrame cf = new CenterFrame(250,250);
         cf.centerXY();
-        setBounds(cf.getX(),cf.getY(),cf.getFw(),cf.getFh());
+        setBounds(cf.getX(), cf.getY(), cf.getFw(), cf.getFh());
         setVisible(true);
     }
     ActionListener btnListener = new ActionListener() {

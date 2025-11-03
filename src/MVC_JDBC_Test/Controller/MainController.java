@@ -190,8 +190,8 @@ public class MainController {
             pstmt.setString(6, id);
 
             int result = pstmt.executeUpdate();
-            if (result > 0) System.out.println("고객정보가 성공적으로 수정되었습니다!");
-            else System.out.println("해당 고객 아이디를 찾을 수 없습니다.");
+            if (result > 0) System.out.println("고객 정보가 성공적으로 수정되었습니다!");
+            else System.out.println("해당 고객의 아이디를 찾을 수 없습니다.");
             pstmt.close();
         } catch (SQLException e) {
             System.out.println("SQL 오류: " + e.getMessage());
@@ -212,8 +212,8 @@ public class MainController {
             pstmt.setString(1, id);
 
             int result = pstmt.executeUpdate();
-            if (result > 0) System.out.println("고객정보가 성공적으로 삭제되었습니다!");
-            else System.out.println("해당 고객 아이디를 찾을 수 없습니다.");
+            if (result > 0) System.out.println("고객 정보가 성공적으로 삭제되었습니다!");
+            else System.out.println("해당 고객의 아이디를 찾을 수 없습니다.");
             pstmt.close();
         } catch (SQLException e) {
             System.out.println("SQL 오류: " + e.getMessage());

@@ -18,9 +18,35 @@ import java.util.Scanner;
 public class MainController {
     public static void main(String[] args) {
         Connection con = JDBCConnector.getConnection();
-//        customerListAndView(con);
-//        orderListAndView(con);
-        inputCustomerAndView(con);
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n========= 고객 관리 시스템 =========");
+            System.out.println("1. 고객 목록 조회");
+            System.out.println("2. 고객 정보 입력");
+            System.out.println("3. 고객 정보 수정"); // ★ 추가
+            System.out.println("4. 고객 정보 삭제"); // ★ 추가
+            System.out.println("5. 프로그램 종료");
+            System.out.print("메뉴 선택: ");
+
+            int menu = sc.nextInt();
+            sc.nextLine(); // 버퍼 정리
+
+            if (menu == 1)
+                customerListAndView(con);
+            else if (menu == 2)
+                inputCustomerAndView(con);
+            else if (menu == 3)
+                updateCustomer(con);   // ★ 추가
+            else if (menu == 4)
+                deleteCustomer(con);   // ★ 추가
+            else if (menu == 5)
+                break;
+            else
+                System.out.println("잘못된 선택입니다.");
+        }
+
+        System.out.println("프로그램을 종료합니다.");
     }
 
     public static void orderListAndView(Connection con) {
@@ -127,4 +153,71 @@ public class MainController {
         System.out.println("프로그램이 종료 되었습니다. !!!");
 
     }
+    // ========================== ★ 신규 추가 코드 시작 ==========================
+
+    // ★ 고객정보 수정 기능 추가
+    public static void updateCustomer(Connection con) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\n====== 고객 정보 수정 ======");
+        System.out.print("수정할 고객 아이디 입력: ");
+        String id = sc.nextLine();
+
+        System.out.print("새 이름 입력: ");
+        String name = sc.nextLine();
+
+        System.out.print("새 나이 입력: ");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("새 등급 입력: ");
+        String level = sc.nextLine();
+
+        System.out.print("새 직업 입력: ");
+        String job = sc.nextLine();
+
+        System.out.print("새 적립금 입력: ");
+        int reward = sc.nextInt();
+
+        String sql = "update 고객 set 고객이름=?, 나이=?, 등급=?, 직업=?, 적립금=? where 고객아이디=?";
+
+        try {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, level);
+            pstmt.setString(4, job);
+            pstmt.setInt(5, reward);
+            pstmt.setString(6, id);
+
+            int result = pstmt.executeUpdate();
+            if (result > 0) System.out.println("고객정보가 성공적으로 수정되었습니다!");
+            else System.out.println("해당 고객 아이디를 찾을 수 없습니다.");
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("SQL 오류: " + e.getMessage());
+        }
+    }
+
+    // ★ 고객정보 삭제 기능 추가
+    public static void deleteCustomer(Connection con) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\n====== 고객 정보 삭제 ======");
+        System.out.print("삭제할 고객 아이디 입력: ");
+        String id = sc.nextLine();
+
+        String sql = "delete from 고객 where 고객아이디 = ?";
+
+        try {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+
+            int result = pstmt.executeUpdate();
+            if (result > 0) System.out.println("고객정보가 성공적으로 삭제되었습니다!");
+            else System.out.println("해당 고객 아이디를 찾을 수 없습니다.");
+            pstmt.close();
+        } catch (SQLException e) {
+            System.out.println("SQL 오류: " + e.getMessage());
+        }
+    }
+    // ========================== ★ 신규 추가 코드 끝 ==========================
 }

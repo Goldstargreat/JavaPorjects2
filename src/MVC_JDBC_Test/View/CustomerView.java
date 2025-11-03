@@ -13,13 +13,13 @@ public class CustomerView {
         System.out.printf("* 적립금: %s\n", customer.getReward());
         System.out.println(); // 줄바꿈
     }
-    public void printCustomerList(List<Customer> customerList) { //CustomerList를 출력한다.
-        printHead();
-        for (Customer customer : customerList) {
-            printCustomer(customer);
-        }
-        printFooter();
-    }
+//    public void printCustomerList(List<Customer> customerList) { //CustomerList를 출력한다.
+//        printHead();
+//        for (Customer customer : customerList) {
+//            printCustomer(customer);
+//        }
+//        printFooter();
+//    }
     public void printHead() {
         System.out.println("----------------------------");
         System.out.println("---------" + title + "---------");

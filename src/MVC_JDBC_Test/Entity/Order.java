@@ -10,7 +10,7 @@ public class Order {
     private String oderCustomer;
     private String orderProduct;
     private int quantity;
-    public String shippingAdress;
+    public String shippingAddress;
     public Date shippingDate;
     public String customerName;
     public String customerId;
@@ -49,11 +49,11 @@ public class Order {
     }
 
     public String getShippingAdress() {
-        return shippingAdress;
+        return shippingAddress;
     }
 
     public void setShippingAdress(String shippingAdress) {
-        this.shippingAdress = shippingAdress;
+        this.shippingAddress = shippingAdress;
     }
 
     public Date getShippingDate() {

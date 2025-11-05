@@ -12,6 +12,9 @@ public class MenuAndToolbarTest extends JFrame {
     JButton btnNew = new JButton(new ImageIcon("./toolbar_icons/new.png"));
     JButton btnOpen = new JButton(new ImageIcon("./toolbar_icons/open.png"));
     JButton btnClose = new JButton(new ImageIcon("./toolbar_icons/close.png"));
+    JMenuItem miNew = new JMenuItem("새문서");
+    JMenuItem miOpen = new JMenuItem("열기");
+    JMenuItem miClose = new JMenuItem("닫기");
 
     public MenuAndToolbarTest(){
         JToolBar toolBar = new JToolBar();
@@ -23,6 +26,20 @@ public class MenuAndToolbarTest extends JFrame {
         toolBar.addSeparator();
         toolBar.add(btnClose);
 
+        JMenuBar mb = new JMenuBar();
+        setJMenuBar(mb);
+        JMenu mFile = new JMenu("파일");
+        JMenu mEdit = new JMenu("편집");
+        mb.add(mFile);
+        mb.add(mEdit);
+
+        mFile.add(miNew);
+        mFile.add(miOpen);
+        mFile.add(miClose);
+
+        btnNew.addActionListener(itemListener);
+        btnOpen.addActionListener(itemListener);
+        btnClose.addActionListener(itemListener);
         miNew.addActionListener(itemListener);
         miOpen.addActionListener(itemListener);
         miClose.addActionListener(itemListener);
@@ -45,7 +62,7 @@ public class MenuAndToolbarTest extends JFrame {
                 item = (JMenuItem) e.getSource();
             }
 
-            if(button == btnNew || item = miNew) {
+            if(button == btnNew || item == miNew) {
                 label.setText("[새 문서] 항목을 선택했습니다.");
             }else if(button == btnOpen || item == miOpen) {
                 label.setText("[열기] 항목을 선택하셨습니다.");

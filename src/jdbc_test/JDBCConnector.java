@@ -1,7 +1,6 @@
 package jdbc_test;
 
 import java.sql.*;
-import java.util.stream.Stream;
 
 public class JDBCConnector {
     private static final String DRIVER_PATH = "oracle.jdbc.driver.OracleDriver";

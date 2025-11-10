@@ -4,7 +4,7 @@ import MVC_JDBC_Test.Entity.Customer;
 import java.util.List;
 
 public class CustomerView {
-    public String title = "고객 정보";
+    public String title = "고객 정보"; // 고객정보
     public void printCustomer(Customer customer) {
         System.out.printf("* 고객명: %s\n", customer.getCustomername());
         System.out.printf("* 나이: %s\n", customer.getAge());

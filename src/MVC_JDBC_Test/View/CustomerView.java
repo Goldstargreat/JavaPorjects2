@@ -1,7 +1,6 @@
 package MVC_JDBC_Test.View;
 
 import MVC_JDBC_Test.Entity.Customer;
-import java.util.List;
 
 public class CustomerView {
     public String title = "고객 정보"; // 고객정보
@@ -13,13 +12,6 @@ public class CustomerView {
         System.out.printf("* 적립금: %s\n", customer.getReward());
         System.out.println(); // 줄바꿈
     }
-//    public void printCustomerList(List<Customer> customerList) { //CustomerList를 출력한다.
-//        printHead();
-//        for (Customer customer : customerList) {
-//            printCustomer(customer);
-//        }
-//        printFooter();
-//    }
     public void printHead() {
         System.out.println("----------------------------");
         System.out.println("---------" + title + "---------");

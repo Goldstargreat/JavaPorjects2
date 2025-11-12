@@ -43,10 +43,10 @@ public class newPaintingPanel extends JPanel implements MouseListener, MouseMoti
                     g.drawLine(x1, y1, x2, y2);
                     break;
                 case "사각형":
-                    g.drawRect(startX, startY, width, height);
+                    g.fillRect(startX, startY, width, height);
                     break;
                 case "타원":
-                    g.drawOval(startX, startY, width, height);
+                    g.fillOval(startX, startY, width, height);
                     break;
             }
         }

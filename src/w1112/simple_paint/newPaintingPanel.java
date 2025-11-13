@@ -44,8 +44,8 @@ public class newPaintingPanel extends JPanel implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         // 마우스 버튼을 놓았을 때 끝 좌표 저장 및 다시 그리기
-        x2 = e.getX();
-        y2 = e.getY();
+        x1 = e.getX();
+        y1 = e.getY();
 
     }
     @Override

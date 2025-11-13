@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame implements ActionListener {
-    PaintingPanel panel;
+//    PaintingPanel panel;
+    newPaintingPanel panel;
     String[] rbStrs = {"선", "사각형", "타원"};
     JRadioButton[] rbs = new JRadioButton[rbStrs.length];
 
@@ -23,7 +24,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
         add(panelNorth, "North");
 
-        panel = new PaintingPanel("선");
+//        panel = new PaintingPanel("선");
+        panel = new newPaintingPanel("선");
         add(panel);
 
         setTitle("단순 그림판");
@@ -38,15 +40,18 @@ public class MainFrame extends JFrame implements ActionListener {
         String cmd = e.getActionCommand();
         switch (cmd){
             case "선":
-                PaintingPanel.polygon = "선";
+//                PaintingPanel.polygon = "선";
+                newPaintingPanel.polygon = "선";
                 panel.repaint();
                 break;
             case "사각형":
-                PaintingPanel.polygon = "사각형";
+//                PaintingPanel.polygon = "사각형";
+                newPaintingPanel.polygon = "사각형";
                 panel.repaint();
                 break;
             case "타원":
-                PaintingPanel.polygon = "타원";
+//                PaintingPanel.polygon = "타원";
+                newPaintingPanel.polygon = "타원";
                 panel.repaint();
                 break;
         }

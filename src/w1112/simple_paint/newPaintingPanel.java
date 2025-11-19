@@ -28,7 +28,7 @@ public class newPaintingPanel extends JPanel implements MouseListener {
                 g.fillRect(x1, y1, x2-x1, y2-y1);
                 break;
             case "타원":
-                g.setColor(Color.YELLOW);
+                g.setColor(Color.MAGENTA);
                 g.fillOval(x1, y1, x2-x1, y2-y1);
                 break;
         }

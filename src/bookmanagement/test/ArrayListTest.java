@@ -14,6 +14,6 @@ public class ArrayListTest {
             System.out.println("출판사: "+ bookVO.getPublish());
             System.out.println("저자명: "+ bookVO.getAuthor());
             System.out.println("=======================================");
-        } //
+        }
     }
 }

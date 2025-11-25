@@ -17,8 +17,8 @@ public class BookRepository {
         ResultSet rs = null;
         PreparedStatement psmt = null;
         String[] columnName = {"name", "publish", "author"};
-        String sql = "select isbn, name, publish, author, price, category_name from book, category where book.category = "
-                + "" + "category.category_id and "+ columnName[selectedIndex] + " like ?";
+        String sql = "select isbn, name, publish, author, price, category_name from book, category where book.category "
+                + "= category.category_id and "+ columnName[selectedIndex] +" like ?";
         try {
             psmt = con.prepareStatement(sql);
             psmt.setString(1, "%" + searchWord + "%");

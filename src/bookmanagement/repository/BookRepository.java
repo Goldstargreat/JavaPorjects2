@@ -31,7 +31,6 @@ public class BookRepository {
                 bookVO.setAuthor(rs.getString("author"));
                 bookVO.setPrice(rs.getInt("price"));
                 bookVO.setCategoryName(rs.getString("category_name"));
-                //bookVO.setCategoryId(rs.getInt("category_id")); // <-- 이 코드를 추가합니다.
                 bookVOList.add(bookVO);
             }
         } catch (SQLException e) {

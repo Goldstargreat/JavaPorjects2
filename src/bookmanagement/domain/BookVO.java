@@ -7,6 +7,7 @@ public class BookVO {
     private String author;
     private int price;
     private String categoryName;
+    // private int categoryId; // 새로 추가된 필드
 
     public int getIsbn() {
         return isbn;
@@ -55,4 +56,12 @@ public class BookVO {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
+
+    //public int getCategoryId() { // <--- 새로 추가된 메서드
+    //        return categoryId;
+    //    }
+    //
+    //    public void setCategoryId(int categoryId) { // <--- 새로 추가된 메서드
+    //        this.categoryId = categoryId;
+    //    }
 }

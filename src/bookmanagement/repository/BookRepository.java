@@ -11,19 +11,19 @@ import java.util.ArrayList;
 public class BookRepository {
     ArrayList<BookVO> bookVOList;
 
-    public ArrayList<BookVO> select(String searchWord, int selectedIndex){
+    public ArrayList<BookVO> select(String searchWord, int selectedIndex) {
         Connection con = JDBCConnector.getConnection();
         bookVOList = new ArrayList<BookVO>();
         ResultSet rs = null;
         PreparedStatement psmt = null;
         String[] columnName = {"name", "publish", "author"};
         String sql = "select isbn, name, publish, author, price, category_name from book, category where book.category "
-                + "= category.category_id and "+ columnName[selectedIndex] +" like ?";
+                + "= category.category_id and " + columnName[selectedIndex] + " like ?";
         try {
             psmt = con.prepareStatement(sql);
             psmt.setString(1, "%" + searchWord + "%");
             rs = psmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 BookVO bookVO = new BookVO();
                 bookVO.setIsbn(rs.getInt("isbn"));
                 bookVO.setName(rs.getString("name"));
@@ -31,25 +31,96 @@ public class BookRepository {
                 bookVO.setAuthor(rs.getString("author"));
                 bookVO.setPrice(rs.getInt("price"));
                 bookVO.setCategoryName(rs.getString("category_name"));
+                //bookVO.setCategoryId(rs.getInt("category_id")); // <-- 이 코드를 추가합니다.
                 bookVOList.add(bookVO);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if(rs != null){
+                if (rs != null) {
                     rs.close();
                 }
-                if(psmt != null){
+                if (psmt != null) {
                     psmt.close();
                 }
-                if(con != null)
+                if (con != null)
                     con.close();
 
             } catch (SQLException e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         }
         return bookVOList;
     }
+
+    /**
+     * 새로운 도서 정보를 데이터베이스의 book 테이블에 삽입합니다.
+     *
+     * @param bookVO 삽입할 도서 정보를 담고 있는 BookVO 객체
+     */
+    public void insert(BookVO bookVO) {
+        Connection con = JDBCConnector.getConnection();
+        // book 테이블에 isbn, name, publish, author, price, category(ID)를 삽입하는 쿼리
+        String sql = "INSERT INTO book (isbn, name, publish, author, price, category) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement psmt = null;
+
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, bookVO.getIsbn()); // 1. isbn
+            psmt.setString(2, bookVO.getName()); // 2. name
+            psmt.setString(3, bookVO.getPublish()); // 3. publish
+            psmt.setString(4, bookVO.getAuthor()); // 4. author
+            psmt.setInt(5, bookVO.getPrice()); // 5. price
+
+            int categoryId = 0;
+            switch (bookVO.getCategoryName()) {
+                case "IT도서":
+                    categoryId = 10;
+                    break;
+                case "소설":
+                    categoryId = 20;
+                    break;
+                case "비소설":
+                    categoryId = 30;
+                    break;
+                case "경제":
+                    categoryId = 40;
+                    break;
+                case "사회":
+                    categoryId = 50;
+                    break;
+            }
+            psmt.setInt(6, categoryId);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (psmt != null) {
+                    psmt.close();
+                }
+                if (con != null)
+                    con.close();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+
+                    if (psmt != null)
+                        psmt.close();
+
+                    if (con != null)
+                        con.close();
+
+                } catch (SQLException e) {
+                    System.out.println("insert close 문제 발생");
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
+
+

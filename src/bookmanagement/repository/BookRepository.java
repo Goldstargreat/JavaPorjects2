@@ -59,7 +59,7 @@ public class BookRepository {
      *
      * @param bookVO 삽입할 도서 정보를 담고 있는 BookVO 객체
      */
-    public void insert(BookVO bookVO) {
+    public void insert(BookVO vo) {
         Connection con = JDBCConnector.getConnection();
         // book 테이블에 isbn, name, publish, author, price, category(ID)를 삽입하는 쿼리
         String sql = "INSERT INTO book (isbn, name, publish, author, price, category) VALUES (?, ?, ?, ?, ?, ?)";
@@ -67,14 +67,14 @@ public class BookRepository {
 
         try {
             psmt = con.prepareStatement(sql);
-            psmt.setInt(1, bookVO.getIsbn()); // 1. isbn
-            psmt.setString(2, bookVO.getName()); // 2. name
-            psmt.setString(3, bookVO.getPublish()); // 3. publish
-            psmt.setString(4, bookVO.getAuthor()); // 4. author
-            psmt.setInt(5, bookVO.getPrice()); // 5. price
-
+            psmt.setInt(1, vo.getIsbn()); // 1. isbn
+            psmt.setString(2, vo.getName()); // 2. name
+            psmt.setString(3, vo.getPublish()); // 3. publish
+            psmt.setString(4, vo.getAuthor()); // 4. author
+            psmt.setInt(5, vo.getPrice()); // 5. price
             int categoryId = 0;
-            switch (bookVO.getCategoryName()) {
+
+            switch (vo.getCategoryName()) {
                 case "IT도서":
                     categoryId = 10;
                     break;
@@ -104,20 +104,8 @@ public class BookRepository {
                     con.close();
 
             } catch (SQLException e) {
+                System.out.println("insert close 문제 발생");
                 e.printStackTrace();
-            } finally {
-                try {
-
-                    if (psmt != null)
-                        psmt.close();
-
-                    if (con != null)
-                        con.close();
-
-                } catch (SQLException e) {
-                    System.out.println("insert close 문제 발생");
-                    e.printStackTrace();
-                }
             }
         }
     }

@@ -53,14 +53,14 @@ public class BookSearchView extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
 
         // 각각의 셀에 리스트에 저장된 BookVO 객체가 가지고 있는 값을 설정한다
-        putSeartchResult();
+        putSearchResult();
 
         // 현재 패널에 North에는 panN, Center에는 scrollbar가 있는 table을 추가했다
         add(panN, BorderLayout.NORTH);  // "North"
         add(scrollPane, BorderLayout.CENTER);
     }
     // DefaultTableModel에 도서 정보들을 반환받아서 설정한다
-    public void putSeartchResult(){
+    public void putSearchResult(){
         // model의 행 개수를 설정
         model.setRowCount(bookVOList.size());
         BookVO vo = null;

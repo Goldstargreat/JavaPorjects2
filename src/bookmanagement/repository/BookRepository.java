@@ -53,11 +53,7 @@ public class BookRepository {
         return bookVOList;
     }
 
-    /**
-     * 새로운 도서 정보를 데이터베이스의 book 테이블에 삽입합니다.
-     *
-     * @param bookVO 삽입할 도서 정보를 담고 있는 BookVO 객체
-     */
+
     public void insert(BookVO vo) {
         Connection con = JDBCConnector.getConnection();
         // book 테이블에 isbn, name, publish, author, price, category(ID)를 삽입하는 쿼리
@@ -108,6 +104,80 @@ public class BookRepository {
             }
         }
     }
-}
 
+    public void update(BookVO vo) {
+        Connection con = JDBCConnector.getConnection();
+        String sql = "update book set name = ?, publish = ?, author = ?, price = ?, category = ? WHERE isbn = ?";
+        PreparedStatement psmt = null;
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, vo.getName());      // 1. name
+            psmt.setString(2, vo.getPublish());   // 2. publish
+            psmt.setString(3, vo.getAuthor());    // 3. author
+            psmt.setInt(4, vo.getPrice());        // 4. price
+            int categoryId = 0;
+            switch (vo.getCategoryName()) {
+                case "IT도서":
+                    categoryId = 10;
+                    break;
+                case "소설":
+                    categoryId = 20;
+                    break;
+                case "비소설":
+                    categoryId = 30;
+                    break;
+                case "경제":
+                    categoryId = 40;
+                    break;
+                case "사회":
+                    categoryId = 50;
+                    break;
+            }
+            psmt.setInt(5, categoryId);           // 5. category
+
+            psmt.setInt(6, vo.getIsbn());         // 6. WHERE isbn
+
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (psmt != null) {
+                    psmt.close();
+                }
+                if (con != null)
+                    con.close();
+
+            } catch (SQLException e) {
+                System.out.println("update close 문제 발생");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void delete(BookVO vo) {
+        Connection con = JDBCConnector.getConnection();
+        String sql = "delete from book WHERE isbn = ?";
+        PreparedStatement psmt = null;
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, vo.getIsbn());
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (psmt != null) {
+                    psmt.close();
+                }
+                if (con != null)
+                    con.close();
+
+            } catch (SQLException e) {
+                System.out.println("delete close 문제 발생");
+                e.printStackTrace();
+            }
+        }
+    }
+}
 

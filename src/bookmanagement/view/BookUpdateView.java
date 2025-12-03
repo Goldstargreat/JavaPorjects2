@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BookInsertView extends JPanel {
+public class BookUpdateView extends JPanel {
     JTable table;
     DefaultTableModel model;
     ArrayList<BookVO> bookVOList;
@@ -18,12 +18,12 @@ public class BookInsertView extends JPanel {
     JLabel[] lbls = new JLabel[header.length];
     JTextField[] tf = new JTextField[header.length - 1];
     JComboBox<String> categoryCombo;
-    JButton btnAdd;
+    JButton btnUpdate;
 
-    public BookInsertView(){
+    public BookUpdateView(){
         setLayout(new BorderLayout());
         categoryCombo = new JComboBox(categoryNames);
-        btnAdd = new JButton("도서 추가");
+        btnUpdate = new JButton("도서 수정");
         panS = new JPanel(new GridLayout(4,4));
         for(int i = 0; i < header.length; i ++){
             lbls[i] = new JLabel(header[i]);
@@ -35,11 +35,21 @@ public class BookInsertView extends JPanel {
                 panS.add(categoryCombo);
             }
         }
+        tf[0].setEditable(false);
+
         for(int i = 0; i < 3; i++){
             panS.add(new JLabel(" "));
         }
-        panS.add(btnAdd);
+        panS.add(btnUpdate);
     }
+    // 선택한 테이블에서 선택한 행의 셀 값들이 수정하는 텍스트 필드에 설정되게 한다.
+    public void setTextField(int rowIndex){
+        for(int i = 0; i < tf.length ; i++){
+            tf[i].setText(model.getValueAt(rowIndex, i).toString());
+        }
+        categoryCombo.setSelectedItem((String)model.getValueAt(rowIndex, 5));
+    }
+
     // Jtable과 DefaultTableModel을 연결하고 테이블과 관련된 내용을 초기화하는 메서드
     public void initView(){
         model = new DefaultTableModel(header, bookVOList.size()){
@@ -82,9 +92,7 @@ public class BookInsertView extends JPanel {
             model.setValueAt(vo.getCategoryName(), i,5);
         }
     }
-    public JButton getBtnAdd() {
-        return btnAdd;
-    }
+
     public void setBookVOList(ArrayList<BookVO> bookVOList) {
         this.bookVOList = bookVOList;
     }
@@ -103,5 +111,12 @@ public class BookInsertView extends JPanel {
             tf[i].setText("");
         }
         categoryCombo.setSelectedIndex(0);
+    }
+    public JButton getBtnUpdate() {
+        return btnUpdate;
+    }
+
+    public JTable getTable() {
+        return table;
     }
 }
